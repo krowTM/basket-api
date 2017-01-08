@@ -30,7 +30,7 @@ func TestValidateRegister(t *testing.T) {
 		t.Error("ValidateRegister failed. valid should false")
 	}
 
-	user = User{Email: "dsdsd@tete.ro", FirstName: "f name", LastName: "l name", Password: "password"}
+	user = User{Email: "dsdsd@tete.ro", FirstName: "f name", LastName: "l name", Password: []byte("password")}
 	valid, err = user.ValidateRegister()
 	if err != nil {
 		t.Error("ValidateRegister failed. err should be nil")
@@ -59,7 +59,7 @@ func TestValidateLogin(t *testing.T) {
 		t.Error("ValidateLogin failed. valid should false")
 	}
 
-	user = User{Email: "dsdsd@tete.ro", Password: "Password"}
+	user = User{Email: "dsdsd@tete.ro", Password: []byte("password")}
 	valid, err = user.ValidateLogin()
 	if err != nil {
 		t.Error("ValidateLogin failed. err should be nil")
