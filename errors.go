@@ -5,17 +5,7 @@ import (
 	"strings"
 )
 
-func errorNotAllowed(w http.ResponseWriter) {
-	http.Error(w, "Not allowed", http.StatusMethodNotAllowed)
-	return
-}
-
-func errorEmptyBody(w http.ResponseWriter) {
-	http.Error(w, "Empty body", http.StatusBadRequest)
-	return
-}
-
-func errorBadRequest(w http.ResponseWriter, args ...string) {
+func errorResponse(w http.ResponseWriter, status int, args ...string) {
 	if len(args) == 0 {
 		http.Error(w, "Bad Request", http.StatusBadRequest)
 	}
@@ -30,7 +20,7 @@ func errorBadRequest(w http.ResponseWriter, args ...string) {
 		}
 		errorMsgs = strings.Join([]string{errorMsgs, errorMsg}, concatenator)
 	}
-	http.Error(w, errorMsgs, http.StatusBadRequest)
+	http.Error(w, errorMsgs, status)
 
 	return
 }

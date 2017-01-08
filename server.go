@@ -13,11 +13,13 @@ var ctx context.Context
 
 func init() {
 	http.HandleFunc("/", home)
-	http.HandleFunc("/register", register)
+	http.HandleFunc("/user/register", register)
+	http.HandleFunc("/user/login", login)
+	http.HandleFunc("/cart/add", addToCart)
 }
 
 func home(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Hello")
+	fmt.Fprint(w, "Welcome")
 }
 
 func setContext(r *http.Request) {
